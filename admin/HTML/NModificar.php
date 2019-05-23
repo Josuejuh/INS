@@ -1,4 +1,4 @@
-  <?php
+<?php
 session_start();
 if(@$_SESSION['Usuario'] == ""){
   header ("Location: ../");
@@ -40,7 +40,7 @@ include 'Nav.php';
             <div class="col-md-12">
                 <ol class="breadcrumb">
                     <li><a href="Inicio.php">Inicio</a></li>
-                    <li class="active">Ingresar Noticia</li>
+                    <li class="active">Modificar Noticia</li>
                 </ol>
             </div>
         </div>
@@ -50,26 +50,32 @@ include 'Nav.php';
         include("Lateral.php")
         ?>
         </div>
+        <?php
+        include("conexion.php");
+        $cod=$_REQUEST['Codigo'];
+        $query = "SELECT * FROM Noticias WHERE CodNoticia ='$cod'";
+        $resultado= $conexion->query($query);
+        $row = $resultado->fetch_assoc();
+        ?>
 
-
-          <form method="post" action="NGuardar.php" enctype="multipart/form-data">
+          <form method="post" action="MoNoticia.php?Codigo=<?php echo $row['CodNoticia']; ?>"  enctype="multipart/form-data">
             <div class="col-md-7">
 
                 <div class="block">
                     <div class="header">
-                        <h2>Ingresar Noticia</h2>
+                        <h2>Modificar Noticia</h2>
                     </div>
                     <div class="content controls">
                         <div class="form-row">
                             <div class="col-md-3">Titulo:</div>
-                            <div class="col-md-9"><input type="text" required name="titulo" class="form-control" Placeholder="Titulo de la noticia"/></div>
+                            <div class="col-md-9"><input type="text" required name="titulo" value="<?php echo $row['Titulo']; ?>" class="form-control" Placeholder="Titulo de la noticia"/></div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">Fecha:</div>
                             <div class="col-md-9">
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="icon-calendar-empty"></span></div>
-                                    <input type="date" name="fecha" value="<?php echo date("Y-m-d"); ?>"  max='<?php echo date("Y-m-d"); ?>' required/>
+                                    <input type="date" name="fecha" value="<?php echo $row['FecNoticia']; ?>"  max='<?php echo date("Y-m-d"); ?>' required/>
 
                                 </div>
                             </div>
@@ -80,7 +86,7 @@ include 'Nav.php';
                 <div class="block block-transparent">
                     <div class="content np">
                         <textarea class="stmce" name="descripcion" required>
-                       
+                        <?php echo $row['Descripcion']; ?>
                         </textarea>
                     </div>
                 </div>
@@ -112,15 +118,25 @@ include 'Nav.php';
                             </div>
                         </div>
                         <div class="form-row">
-                        <div class="col-md-3">
-                        </div>
+                        <div class="form-row">
                           <center>
-                            <div class="col-md-6">
-                              <img src="img/usuario.jpg" id="Abrir1" class="img-rounded" height="250px" width="250px"/>
+                            <div class="col-md-4">
+                              <?php
+                              $img1=$row['Foto'];
+                                if ($img1=="") {
+                              ?>
+                        <img src="img/usuario.jpg" value="img/Sinimagen.jpg" id="Abrir1" class="img-rounded" height="150px" width="150px"/>
+                        <?php
+                        }
+                        else {
+                        ?>
+                        <img src="data:image/jpg;base64,<?php echo base64_encode($row['Foto']); ?>"  id="Abrir1" class="img-rounded" height="150px" width="150px"/>
+                      <?php
+                      }
+                       ?>
                               <script>
                               var Mostrar1 = function(event) {
                                 var input = event.target;
-
                                 var reader = new FileReader();
                                 reader.onload = function(){
                                   var dataURL = reader.result;
@@ -130,9 +146,7 @@ include 'Nav.php';
                                 reader.readAsDataURL(input.files[0]);
                               };
                               </script>
-                            </div>
-                          </center>
-                        </div>
+</div>
                         <div class="form-row">
                           <div class="col-md-4"> </div>
                             <div class="col-md-4">
