@@ -104,7 +104,7 @@ include 'Nav.php';
 
                                 <div class="input-group file">
                                     <input type="text" class="form-control" placeholder="img/Sinimagen.jpg"/>
-                                    <input type="file" name="img1" onchange='Mostrar1(event)'/>
+                                    <input type="file" required name="img1" onchange='Mostrar1(event)'/>
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="button">Buscar</button>
                                     </span>
