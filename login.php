@@ -8,15 +8,13 @@ if (isset($_POST['submit'])){
   $query = "SELECT * FROM Usuarios WHERE (Usuario = '$usuario' AND Clave = MD5('$contraseña'))";
   $resultado = $conexion->query($query);
   $row = mysqli_fetch_assoc($resultado);
-  $imagen = $row["Foto"];
-
- 
+  
 if (mysqli_num_rows($resultado)>0)
 {
 	session_start();
 	$_SESSION['identificador']=$usuario;
 	$_SESSION['verificar']=true;
-	$_SESSION['codigo']=$row["CodPersona"];
+	$_SESSION['codigo']=$row["CodUsuario"];
 	header('Location: pagadito.php');
 
 } else{

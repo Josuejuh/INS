@@ -12,7 +12,7 @@ if (isset($_POST['submit'])){
 	$codigoP= $_SESSION['codigo'];
 	$fecha=date("Y-m-d");
 	
-	$query = "INSERT INTO Donaciones (FecDonacion, Monto, CodDonador, Estado) VALUES ('$fecha','$monto','$codigoP','D')";
+	$query = "INSERT INTO Donaciones (FecDonacion, Monto, CodDonador, Estado) VALUES ('$fecha','$monto','$codigoP','"D"')";
 	$resultado = $conexion->query($query);
   
   if ($resultado)
