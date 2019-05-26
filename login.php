@@ -1,3 +1,30 @@
+<?php
+include ("conexion.php");
+
+if (isset($_POST['submit'])){
+  $usuario= $_POST ['usuario'];
+  $contraseña= $_POST ['contraseña'];
+  
+  $query = "SELECT * FROM Usuarios WHERE (Usuario = '$usuario' AND Clave = MD5('$contraseña'))";
+  $resultado = $conexion->query($query);
+  $row = mysqli_fetch_assoc($resultado);
+  $imagen = $row["Foto"];
+
+ 
+if (mysqli_num_rows($resultado)>0)
+{
+	session_start();
+	$_SESSION['identificador']=$usuario;
+	$_SESSION['verificar']=true;
+	$_SESSION['codigo']=$row["CodPersona"];
+	header('Location: pagadito.php');
+
+} else{
+  echo '<script language="javascript">alert("Credenciales incorrectas, favor intentar de nuevo");</script>';
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,11 +113,11 @@
 						<!-- Portfolio Item -->
 						<div class="card branding">
 							<div class="card-body">
-							<form  action="clogin.php" method="post" class="form-register">
+							<form  action="login.php" method="post" class="form-register">
 								<h2 class="form__titulo">Iniciar Sesión</h2>
 									<input name="usuario" type="text" placeholder="Usuario" required="required" data-error="Se requiere el nombre de usuario" class="input-100">
 									<input name="contraseña" type="password" placeholder="Contraseña" required="required" data-error="Se requiere una contraseña" class="input-100">
-									<center><input type="submit" value="Inicar Sesión" class="btn-enviar"></center>
+									<center><input name="submit" type="submit" value="Inicar Sesión" class="btn-enviar"></center>
 									<p class="form__link">¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a></p>		
 							</form>
 							</div>

@@ -332,13 +332,13 @@ section
 	left: 0;
 	width: 100%;
 	height: 128px;
-	background: rgba(27, 11, 51, 0.52);
+	background: rgba(0, 0, 0, 0.52);
 	z-index: 10;
 }
 .header.scrolled
 {
 	height: 80px;
-	background: rgba(27, 11, 51, 0.92);
+	background: rgba(0, 0, 0, 0.52);
 }
 
 /*********************************
@@ -739,7 +739,7 @@ section
 }
 .menu_close:hover i
 {
-	color:  #cc0c0c;
+	color:  #ff6b09;
 }
 .menu ul
 {
@@ -764,7 +764,7 @@ section
 	width: 5px;
 	height: 5px;
 	border-radius: 50%;
-	background:  #cc0c0c;
+	background:  #ff6b09;
 	content: '';
 }
 .menu ul li.active a
@@ -782,7 +782,7 @@ section
 }
 .menu ul li a:hover
 {
-	color:  #cc0c0c;
+	color:  #ff6b09;
 }
 
 /*********************************

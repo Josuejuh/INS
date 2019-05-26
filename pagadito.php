@@ -1,3 +1,29 @@
+<?php
+include ("conexion.php");
+
+session_start();
+if ($_SESSION['verificar']==false){
+	header('Location: login.php');
+}
+
+if (isset($_POST['submit'])){
+
+	$monto= $_POST ['Monto'];
+	$codigoP= $_SESSION['codigo'];
+	$fecha=date("Y-m-d");
+	
+	$query = "INSERT INTO Donaciones (FecDonacion, Monto, CodDonador, Estado) VALUES ('$fecha','$monto','$codigoP','D')";
+	$resultado = $conexion->query($query);
+  
+  if ($resultado)
+  {
+  echo '<script language="javascript">alert("Su correo ya esta registrado");</script>';
+  } else {
+	echo '<script language="javascript">alert("Ese nombre de usuario no esta disponible");</script>';
+  }
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,19 +112,22 @@
 
 						<!-- Portfolio Item -->
 						<div class="card branding">
-							<div class="card_image">
-							<center>
-							<br>
-							<img  src="images/bot1.png" href=""><br><br>
-							<img  src="images/bot2.png" href="">
-							<br><br>
-							</center>
+							<div class="card-body">
+							<center><h1>Bienvenido, <?php 
+							echo $_SESSION['identificador'];
+							?></h1></center><br><br>
+							<form  action="pagadito.php" method="POST" class="form-register">
+								<h2 class="form__titulo">Donaciones</h2>
+									<font size=5>$</font><input name="Monto" type="number" min="5" max="1000" placeholder="Monto" required="required" data-error="Escriba el monto a donar" class="input-90">
+									<center><input name="submit" type="submit" value="Donar" class="btn-enviar"></center>
+							</form>
 							</div>
 							
 							<div class="card-body">
+								<center>
+								<div><a href="logout.php"><img src="images/close.png"></a></div><br><br><br>
 								<div class="card-title">Cuentas Bancarias</div>
-								<div class="card-header">Scotiabank		-> 006656165056-5</div>
-								<div class="card-header">Banco Agricola	-> 654651651651-5</div>
+								<div class="card-header">Scotiabank		-> 15-40-008198</div></center>
 								</div>
 							</div>
 						</div>

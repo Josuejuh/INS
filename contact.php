@@ -1,3 +1,82 @@
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+
+enviarEmail();
+
+function enviarEmail(){
+    if(isset($_POST['nombre']) && isset($_POST['correo']) && isset($_POST['asunto']) && isset($_POST['comentarios'])){
+        //mandar correo
+        $nombre = $_POST['nombre'];
+
+        $email = $_POST['correo'];
+
+        $porque = $_POST['asunto'];
+
+        $comentarios = $_POST['comentarios'];
+
+        $mensaje = "";
+
+        $mensaje .= "Enviado el " . date('d/m/Y', time()); 
+
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';                   // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'formtadesa@gmail.com';                 // SMTP username
+            $mail->Password = 'Tadesa19';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('formtadesa@gmail.com', 'Formulario TADESA');
+            $mail->addAddress('josueurquilla23@gmail.com', 'TADESA');     // Add a recipient
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'TADESA FORMULARIO';
+            $mail->Body    = '
+            <html>
+                                    <head>
+                                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+                                    </head>
+                                    <body>
+                                         <h2>Haz recibido un mensaje de la página web TADESA</h2>
+                                         <p> Este mensaje fue enviado por: '.$nombre. '</p>
+                                         <p> El motivo del correo es por: '.$porque. '</p>
+                                         <p> Comentarios: '.$comentarios. '</p>
+                                         <p>'.$mensaje. '</p>
+                                         <p><br><br> Puedes ponerte en contacto con la persona al e-mail: '.$email.'</p>
+                                         <hr>
+                                         
+                                    </body>
+                                    </html> <br />';
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+            echo  '<script language="javascript">alert("Mensaje enviado");</script>'; 
+        } catch (Exception $e) {
+			$error = $mail->ErrorInfo;
+            echo '<script language="javascript">alert("Error en el envio");</script>';
+        }
+
+    }else{
+        return;
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,17 +189,15 @@
 							
 							<!-- Reply Form -->
 
-							<form id="reply_form" action="form.php" method="post" >
+							<form action="contact.php" method="post" >
 								<div>
 									<input name="nombre" id="reply_form_name" class="input_field reply_form_name" type="text" placeholder="Nombre" required="required" data-error="Se requiere del nombre..">
 									<input name="correo" id="reply_form_email" class="input_field reply_form_email" type="email" placeholder="Correo" required="required" data-error="Favor escribir un correo valido.">
 									<input name="asunto" id="reply_form_subject" class="input_field reply_form_subject" type="text" placeholder="Asunto" required="required" data-error="Asunto es requerido.">
 									<textarea name="comentarios" id="reply_form_message" class="text_field reply_form_message" name="message"  placeholder="Mensaje" rows="4" required data-error="Por favor, escribe un mensaje."></textarea>
-								</div>
-								<div>
-									<button id="reply_form_submit" type="submit" class="reply_submit_btn trans_300" value="Submit">
-										Enviar
-									</button>
+									</div>
+                                <div>			
+									<button id="reply_form_submit" type="submit" class="reply_submit_btn trans_300"> Enviar </button>
 								</div>
 
 							</form>

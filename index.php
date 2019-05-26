@@ -15,6 +15,10 @@
 <link href="plugins/icon-font/styles.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="styles/slicebox.css" />
+<link rel="stylesheet" type="text/css" href="styles/demo.css" />
+<link rel="stylesheet" type="text/css" href="styles/custom.css" />
+<script type="text/javascript" src="js/modernizr.custom.46884.js"></script>
 
 </head>
 
@@ -69,51 +73,51 @@
 			<div class="home_background prlx"></div>
 		</div>
 		
-		<!-- Hero Slider -->
-		<div class="hero_slider_container">
-			
-			<!-- Slider -->
-			<div class="owl-carousel owl-theme hero_slider"  style="background-image:url(images/slider_background.jpg)">
+	<!-- Wrapper -->
+	<div class="wrapper">
+	<?php
+/*include ("conexion.php");
 
-				<!-- Slider Item -->
-				<div class="owl-item hero_slider_item d-flex flex-column">
-					<div class="centrado"><br><br><br><br>
-					<span ><img src="images/portfolio_5.jpg" height="100" width="100"></span>
-					<span>GO!</span>
-					<span>Pruebas</span>
-					<span><h3>Fecha</h3></span>
-					<h1>Titulo</h1>
-					<p> Parrafo revisar que quepa todo </p></div>
+$query = "SELECT * FROM Noticias ORDER BY CodNoticia DESC";
+$result = $conexion->query($query);
+
+if(!mysqli_num_rows($result)){
+echo "Todavía no ha sido publicada ninguna noticia";
+} else {
+
+while($row = mysqli_fetch_assoc($result)){
+	$imagen = $row["Foto"];
+	echo "<img src='".$imagen."'>";
+	 
+}
+}*/
+?>
+				<br><br><br><br><br>
+				<ul id="sb-slider" class="sb-slider">
+					<li>
+						<a><img src="images/instalacion1.jpg"/></a>
+						<div class="sb-description">
+							<h3>Complejo Deportivo Municipal de Santiago Texacuangos</h3>
+							<h4>Teléfono: +503 7308-8614</h4>
+							<h4>Dirección: Sede Complejo Deportivo Municipal de Santiago Texacuangos, 1 1/2 kilómetros después del casco urbano carretera panorámica.</h4>
+						</div>
+					</li>
+					<li>
+						<a><img src="images/instalacion2.jpg"/></a>
+					</li>
+					<li>
+						<a><img src="images/instalacion3.jpg"/></a>
+					</li>
+				</ul>
+
+				<div id="shadow" class="shadow"></div>
+
+				<div id="nav-arrows" class="nav-arrows">
+					<a href="#">Next</a>
+					<a href="#">Previous</a>
 				</div>
 
-
 			</div>
-			
-			<!-- Hero Slider Navigation Left -->
-			<div class="hero_slider_nav hero_slider_nav_left">
-				<div class="hero_slider_prev d-flex flex-column align-items-center justify-content-center trans_200">
-					<i class="fas fa-chevron-left trans_200"></i>
-				</div>
-			</div>
-
-			<!-- Hero Slider Navigation Right -->
-			<div class="hero_slider_nav hero_slider_nav_right">
-				<div class="hero_slider_next d-flex flex-column align-items-center justify-content-center trans_200">
-					<i class="fas fa-chevron-right trans_200"></i>
-				</div>
-			</div>
-
-		</div>
-
-	
-		<div class="next_section_scroll">
-			<div class="next_section nav_links" data-scroll-to=".icon_boxes">
-				<i class="fas fa-chevron-down trans_200"></i>
-				<i class="fas fa-chevron-down trans_200"></i>
-			</div>
-		</div>
-			
-	</div>
 
 	<!-- Footer -->
 
@@ -191,7 +195,58 @@
 <script src="plugins/scrollTo/jquery.scrollTo.min.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="js/custom.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.slicebox.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				
+				var Page = (function() {
 
+					var $navArrows = $( '#nav-arrows' ).hide(),
+						$shadow = $( '#shadow' ).hide(),
+						slicebox = $( '#sb-slider' ).slicebox( {
+							onReady : function() {
+
+								$navArrows.show();
+								$shadow.show();
+
+							},
+							orientation : 'r',
+							cuboidsRandom : true
+						} ),
+						
+						init = function() {
+
+							initEvents();
+							
+						},
+						initEvents = function() {
+
+							// add navigation events
+							$navArrows.children( ':first' ).on( 'click', function() {
+
+								slicebox.next();
+								return false;
+
+							} );
+
+							$navArrows.children( ':last' ).on( 'click', function() {
+								
+								slicebox.previous();
+								return false;
+
+							} );
+
+						};
+
+						return { init : init };
+
+				})();
+
+				Page.init();
+
+			});
+		</script>
 </body>
 
 </html>

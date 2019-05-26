@@ -1,8 +1,54 @@
 <?php
-	require ('conexion.php');
-	
-	$query = "SELECT CodPais, Pais FROM Paises";
-	$resultado=$conexion->query($query);
+include ("conexion.php");
+
+if (isset($_POST['submit'])){
+  $nombre= $_POST ['nombre'];
+  $apellido= $_POST ['apellidos'];
+  $correo=$_POST['email'];
+  $usuario= $_POST ['usuario'];
+  $clave= $_POST ['password'];
+  $clave1= $_POST ['cfmPassword'];
+  $nit= $_POST['NIT'];
+  $telefono=$_POST ['telefono'];
+  $codPais=$_POST['Pais'];
+  
+  $query = "SELECT * FROM Personas WHERE (Correo = '$correo')";
+  $consulta = "SELECT * FROM Usuarios WHERE (Usuario = '$usuario')";
+  $resultado = $conexion->query($query);
+  $resultado1 = $conexion->query($consulta);
+
+  if($clave==$clave1){
+if (mysqli_num_rows($resultado)>0)
+{
+echo '<script language="javascript">alert("Su correo ya esta registrado");</script>';
+} else if(mysqli_num_rows($resultado1)>0 && mysqli_num_rows($resultado) == 0){
+  echo '<script language="javascript">alert("Ese nombre de usuario no esta disponible");</script>';
+}else {
+   $query = "INSERT INTO Personas (Nombre, Apellido, Correo,Nit,Telefono,CodPais) VALUES ('$nombre','$apellido','$correo','$nit','$telefono','$codPais')";
+   $resultado = $conexion->query($query);
+   if ($resultado) {
+      $query="SELECT CodPersona  FROM Personas Order by CodPersona desc limit 1";
+      $resultado= $conexion->query($query);
+      while ($row = $resultado->fetch_assoc()){
+        $persona = $row['CodPersona'];
+        $query = "INSERT INTO Usuarios (Tipo,Usuario,Clave,CodPersona) VALUES (1,'$usuario',MD5('$clave'),'$persona')";
+        $resultado= $conexion->query($query);
+        if ($resultado) {
+          echo'<script type="text/javascript">
+         alert("Se ha registrado en TADESA, por favor inicie sesión");
+         window.location.href="login.php";
+         </script>';
+        }else{
+         echo'<script type="text/javascript">
+         alert("Hubo un error");</script>';
+        }
+}
+   }
+}
+  }else{
+    echo '<script language="javascript">alert("Las contraseñas no coiciden");</script>';
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -93,25 +139,31 @@
 						<!-- Portfolio Item -->
 						<div class="card branding">
 							<div class="card-body">
-							<form  action="cregister.php" method="post" class="form-register">
+							<form  action="register.php" method="post" class="form-register">
 								<h2 class="form__titulo">Registrarse</h2>
 									<input name="nombre" type="text" placeholder="Nombres" required="required" data-error="Se requiere del nombre" class="input-48">
 									<input name="apellidos" type="text" placeholder="Apellidos" required="required" data-error="Se requiere del apellido." class="input-48">
 									<input name="telefono" type="text" placeholder="Teléfono" required="required" data-error="Favor dejar un número de contaco." class="input-48">
-									<input name="NIT" type="text" placeholder="NIT"  data-error="Digite el NIT si posee sin guiones." class="input-48">
+									<input name="NIT" type="text" placeholder="NIT / Otro documento"  required="required" data-error="Digite el NIT si posee sin guiones." class="input-48">
 									<input name="email"  type="email" placeholder="Correo" required="required" data-error="Favor escribir un correo válido." class="input-100">
 
-									<select name="cbx_pais" id="cbx_pais" class="input-100">
-									<option value="0">Seleccionar Pais</option>
-									<?php while($row = $resultado->fetch_assoc()) { ?>
-									<option value="<?php echo $row['CodPais']; ?>"><?php echo $row['Pais']; ?></option>
-									<?php } ?>
-									</select>
+									<select class="input-100" id="Pais" name="Pais" required>
+			                        <?php
+                                    include('conexion.php');
+                                    $query = "SELECT * FROM Paises";
+                                    $result = mysqli_query($conexion, $query);
+                                    while($row = mysqli_fetch_array($result))
+                                    {
+                                        echo '<option value="' .$row["CodPais"]. '">' .$row["Pais"]. '</option>';
+                                    }
+                                    mysqli_close($conexion);
+                                    ?>
+                                </select>
 
 									<input name="usuario" type="text" placeholder="Usuario" required="required" data-error="Se requiere de un nombre de usuario" class="input-100">
-									<input name="contraseña" type="password" placeholder="Contraseña" required="required" data-error="Se requiere del una contraseña" class="input-48">
-									<input name="rpcontraseña" type="password" placeholder="Repita la contraseña" required="required" data-error="Se requiere que repita la contraseña" class="input-48">
-									<center><input type="submit" value="Registrar" class="btn-enviar"></center>
+									<input name="password" type="password" placeholder="Contraseña" required="required" data-error="Se requiere del una contraseña" class="input-48">
+									<input name="cfmPassword" type="password" placeholder="Repita la contraseña" required="required" data-error="Se requiere que repita la contraseña" class="input-48">
+									<center><input name="submit" type="submit" value="Registrar" class="btn-enviar"></center>
 									<p class="form__link">¿Ya tienes una cuenta? <a href="login.php">Ingresa aquí</a></p>		
 							</form>
 							</div>
@@ -189,6 +241,7 @@
 </div>
 
 <script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery-validate.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
 <script src="plugins/greensock/TweenMax.min.js"></script>
