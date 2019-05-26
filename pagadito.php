@@ -10,16 +10,17 @@ if (isset($_POST['submit'])){
 
 	$monto= $_POST ['Monto'];
 	$codigoP= $_SESSION['codigo'];
+	date_default_timezone_set('America/El_Salvador');
 	$fecha=date("Y-m-d");
 	
-	$query = "INSERT INTO Donaciones (FecDonacion, Monto, CodDonador, Estado) VALUES ('$fecha','$monto','$codigoP','"D"')";
+	$query = "INSERT INTO Donaciones (FecDonacion, Monto, CodDonador, Estado) VALUES ('$fecha','$monto','$codigoP','D')";
 	$resultado = $conexion->query($query);
   
   if ($resultado)
   {
-  echo '<script language="javascript">alert("Su correo ya esta registrado");</script>';
+  echo '<script language="javascript">alert("Donacion hecha");</script>';
   } else {
-	echo '<script language="javascript">alert("Ese nombre de usuario no esta disponible");</script>';
+	echo '<script language="javascript">alert("Error, favor contactar a TADESA");</script>';
   }
   }
 
