@@ -28,6 +28,12 @@
  */
 require_once('config.php');
 require_once('lib/Pagadito.php');
+include ("conexion.php");
+
+session_start();
+if ($_SESSION['verificar']==false){
+	header('Location: login.php');
+}
 
 if (isset($_GET["token"]) && $_GET["token"] != "") {
     /*
