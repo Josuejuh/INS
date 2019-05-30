@@ -41,56 +41,7 @@ include "Lateral.php";
 ?>
 </div>
 
-          <div class="col-md-5">
-            <form method="POST" action="InComentario.php" enctype="multipart/form-data">
-
-            <div class="block block-drop-shadow">
-
-                <div class="header">
-                    <h2>Comentario</h2>
-                </div>
-
-                  <div class="content controls">
-                    <div class="form-row">
-                        <div class="col-md-3">Codigo de Usuario:</div>
-                        <div class="col-md-9">
-                            <input type="text" name="codigo" placeholder="Codigo Usuario">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-3">Comentario:</div>
-                        <div class="col-md-9">
-                            <textarea input type="text" name="comentario"  placeholder="Ingrese Comentario"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="tar">
-                    <button class="btn btn-default btn-clean">Guardar</button>
-                </div>
-            </div>
-                </form>
-                </div>
-          </div>
-
-          <div class="col-md-5">
-
-              <div class="block block-drop-shadow">
-                    <div class="content list">
-                        <div class="list-item">
-                            <div class="list-datetime">
-                                <div class="time"><?php echo $row['Fecha']; ?></div>
-                                <div class="time"><?php echo $row['Hora']; ?></div>
-                            </div>
-                            <div class="list-info">
-                                <img src="usuario.jpg" value="Sinimagen.jpg" id="imagen" class="img-circle img-thumbnail" width="50px" height="50px"/>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> 
-    </div>
+</div>
 </body>
 </html>
 <?php

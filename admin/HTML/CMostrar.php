@@ -77,7 +77,7 @@ include 'Nav.php';
                               <?php
                               $Codigo=@$_SESSION['Codigo'];
                               include("conexion.php");
-                              $query="SELECT*FROM Usuarios inner join Personas on Usuarios.CodPersona = Personas.CodPersona inner join Paises on Personas.CodPais = Paises.CodPais WHERE Usuarios.Tipo=0";
+                              $query="SELECT*FROM Usuarios inner join Personas on Usuarios.CodPersona = Personas.CodPersona inner join Paises on Personas.CodPais = Paises.CodPais WHERE Usuarios.Tipo=0 AND Usuarios.Estado='A'";
                               $resultado= $conexion->query($query);
                               while ($row = $resultado->fetch_assoc()){
                               ?>
@@ -90,7 +90,7 @@ include 'Nav.php';
                                     <td><?php echo $row['Pais']; ?></td>
                                     <td><center><a href="CiModificar.php?Codigo=<?php echo $row['CodUsuario']; ?>"><button type="button" class="btn btn-info btn-xs">
     <span class="glyphicon icon-pencil icon-2x"></span></button></a></center></td>
-           						              <td><center><a href="ElUsuario.php?Codigo=<?php echo $row['CodUsuario']; ?>&CodPersona=<?php echo $row['CodPersona']; ?>" type="button" class="button" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?');"><button type="button" class="btn btn-danger btn-xs">
+           						              <td><center><a href="ElUsuario.php?Codigo=<?php echo $row['CodUsuario']; ?>&CodPersona=<?php echo $row['CodPersona']; ?>" type="button" class="button" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?');"><button type="button" class="btn btn-danger btn-xs">
                      								<span class="glyphicon icon-remove icon-2x"></span></button></a></center></td>
 
                                 </tr>

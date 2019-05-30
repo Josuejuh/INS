@@ -139,7 +139,7 @@ include("conexion.php");
 	$resultado=mysqli_query($conexion, "SELECT * from Noticias ORDER BY FecNoticia ASC");
               $registros=mysqli_num_rows($resultado);
                 $result=mysqli_query($conexion, " SELECT CodNoticia, FecNoticia, Titulo, Foto, SUBSTRING( Descripcion, 1, 200 ) AS Descripcion
-								FROM `Noticias` ORDER BY FecNoticia ASC limit $inicio, $reg_pag ");
+								FROM `Noticias` ORDER BY FecNoticia ASC ");
                 $can_pag=($registros/$reg_pag);
                 if ($registros==0) {
                   echo "No se han encontrado noticias para mostrar";
