@@ -5,24 +5,6 @@ session_start();
 if ($_SESSION['verificar']==false){
 	header('Location: login.php');
 }
-
-if (isset($_POST['submit'])){
-
-	$monto= $_POST ['Monto'];
-	$codigoP= $_SESSION['codigo'];
-	$fecha=date("Y-m-d");
-	
-	$query = "INSERT INTO Donaciones (FecDonacion, Monto, CodDonador, Estado) VALUES ('$fecha','$monto','$codigoP','"D"')";
-	$resultado = $conexion->query($query);
-  
-  if ($resultado)
-  {
-  echo '<script language="javascript">alert("Su correo ya esta registrado");</script>';
-  } else {
-	echo '<script language="javascript">alert("Ese nombre de usuario no esta disponible");</script>';
-  }
-  }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +41,7 @@ if (isset($_POST['submit'])){
 					<li><a href="index.php">Inicio</a></li>
 					<li><a href="about.php">Quiénes somos</a></li>
 					<li><a href="places.php">Instalaciones</a></li>	
-					<li class="active"><a href="#">Donaciones</a></li>		
+					<li><a href="contributions.php">Donaciones</a></li>		
 					<li><a href="contact.php">Contáctanos</a></li>
 				</ul>
 </nav>
@@ -80,7 +62,7 @@ if (isset($_POST['submit'])){
 				<li class="menu_mm"><a href="index.php">Inicio</a></li>
 				<li class="menu_mm"><a href="about.php">Quiénes somos</a></li>
 				<li class="menu_mm"><a href="places.php">Instalaciones</a></li>
-				<li class="menu_mm active"><a href="#">Donaciones</a></li>
+				<li class="menu_mm"><a href="contributions.php">Donaciones</a></li>
 				<li class="menu_mm"><a href="contact.php">Contáctanos</a></li>
 			</ul>
 		</div>
@@ -116,9 +98,9 @@ if (isset($_POST['submit'])){
 							<center><h1>Bienvenido, <?php 
 							echo $_SESSION['identificador'];
 							?></h1></center><br><br>
-							<form  action="pagadito.php" method="POST" class="form-register">
+							<form  action="cobro.php" method="POST" class="form-register">
 								<h2 class="form__titulo">Donaciones</h2>
-									<font size=5>$</font><input name="Monto" type="number" min="5" max="1000" placeholder="Monto" required="required" data-error="Escriba el monto a donar" class="input-90">
+									<font size=5>$</font><input name="Monto" id="Monto" type="number" min="1" max="1000" placeholder="Monto" required="required" data-error="Escriba el monto a donar" class="input-90">
 									<center><input name="submit" type="submit" value="Donar" class="btn-enviar"></center>
 							</form>
 							</div>

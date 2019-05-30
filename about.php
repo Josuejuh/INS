@@ -89,9 +89,9 @@
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="icon_box_title">
-						<h1>Talleres deportivos TADESA</h1>
+						<center><h1>Talleres deportivos TADESA</h1>
 						<br><br>
-						<img src="images/personas.jpg" >
+						<img src="images/personas.jpg" ></center>
 					</div>
 				</div>
 
