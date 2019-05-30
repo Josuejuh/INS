@@ -13,42 +13,21 @@
 
           <ul class="content list-group">
             <li class="dropdown">
-              <a href="#" class="list-group-item dropdown-toggle" data-toggle="dropdown"><span class="icon-shopping-cart"></span>Administracion<i class="icon-angle-right pull-right"></i></a>
+              <a href="#" class="list-group-item dropdown-toggle" data-toggle="dropdown"><i class="fas fa-futbol"></i>Administracion<i class="icon-angle-right pull-right"></i></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li>
-                      <a href="#">Productos<i class="icon-angle-right pull-right"></i></a>
-                      <ul class="dropdown-submenu">
-                        <li><a href="InProducto.php">Insertar Producto</a></li>
-                        <li><a href="MProducto.php">Mostrar Productos</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href="#">Categorias<i class="icon-angle-right pull-right"></i></a>
-                      <ul class="dropdown-submenu">
-                        <li><a href="MCategoria.php">Mostrar Categorias</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href="#">Subcategorias<i class="icon-angle-right pull-right"></i></a>
-                      <ul class="dropdown-submenu">
-                        <li><a href="InSubcategoria.php">Insertar Subategoria</a></li>
-                        <li><a href="MSubcategoria.php">Mostrar Subcategorias</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href="#">Ofertas<i class="icon-angle-right pull-right"></i></a>
-                      <ul class="dropdown-submenu">
-                        <li><a href="InOferta.php">Insertar Ofertas</a></li>
-                        <li><a href="MOferta.php">Mostrar Ofertas</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a href="#">One&Only<i class="icon-angle-right pull-right"></i></a>
-                      <ul class="dropdown-submenu">
-                        <li><a href="MCarrusel.php">Carrusel</a></li>
-                        <li><a href="Bitacora.php">Bit&aacute;cora</a></li>
-                      </ul>
-                  </li>
+                <li>
+                                <a href="#">Noticias<i class="icon-angle-right pull-right"></i></a>
+                                <ul class="dropdown-submenu">
+                                  <li><a href="InNoticia.php">Insertar Noticia</a></li>
+                                  <li><a href="MNoticias.php">Mostrar Noticias</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Donaciones<i class="icon-angle-right pull-right"></i></a>
+                                <ul class="dropdown-submenu">
+                                  <li><a href="MDonaciones.php">Mostrar Donaciones</a></li>
+                                </ul>
+                            </li>
                 </ul>
             </li>
             <?php
@@ -67,7 +46,6 @@
                 <li>
                     <a href="#">Clientes<i class="icon-angle-right pull-right"></i></a>
                     <ul class="dropdown-submenu">
-                    <li><a href="ReClientes.php">Registrar Cliente</a></li>
                     <li><a href="CMostrar.php">Mostrar Cliente</a></li>
                     </ul>
                 </li>

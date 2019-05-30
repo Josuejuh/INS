@@ -23,7 +23,7 @@
                           </a>
                       </li>
                       <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="font-family:'Segoe UI Symbol';color:white;font-size:15px;">&#x1f455;</span>Administración</a>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span ><i class="far fa-futbol"></i></span>Administración</a>
                           <ul class="dropdown-menu">
                             <li>
                                 <a href="#">Noticias<i class="icon-angle-right pull-right"></i></a>
@@ -31,14 +31,20 @@
                                   <li><a href="InNoticia.php">Insertar Noticia</a></li>
                                   <li><a href="MNoticias.php">Mostrar Noticias</a></li>
                                 </ul>
-                                </li>
+                            </li>
+                            <li>
+                                <a href="#">Donaciones<i class="icon-angle-right pull-right"></i></a>
+                                <ul class="dropdown-submenu">
+                                  <li><a href="MDonaciones.php">Mostrar Donaciones</a></li>
+                                </ul>
+                            </li>
                           </ul>
                       </li>
                       <?php
                         if ($_SESSION["Nivel"]==1){
                       ?>
                       <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fas fa-users"></span>Ajustes</a>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-cog"></span>Ajustes</a>
                           <ul class="dropdown-menu">
                             <li>
                                 <a href="#">Administradores<i class="icon-angle-right pull-right"></i></a>
