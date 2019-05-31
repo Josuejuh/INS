@@ -7,7 +7,7 @@
     $resultado1= $conexion->query($query1);
     if ($resultado1) {
      echo'<script type="text/javascript">
-        alert("Noticia aprobada correctamente");
+        alert("Donacion aprobada correctamente");
         window.location.href="MDonaciones.php";
         </script>';
     }
@@ -23,7 +23,7 @@
     $resultado2= $conexion->query($query2);
     if ($resultado2) {
      echo'<script type="text/javascript">
-        alert("Noticia desaprobada correctamente");
+        alert("Donacion desaprobada correctamente");
         window.location.href="MDonaciones.php";
         </script>';
     }
