@@ -39,7 +39,7 @@ function enviarEmail(){
 
             //Recipients
             $mail->setFrom('formtadesa@gmail.com', 'Formulario TADESA');
-            $mail->addAddress('josueurquilla23@gmail.com', 'TADESA');     // Add a recipient
+            $mail->addAddress('', 'TADESA');     // Add a recipient
 
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
