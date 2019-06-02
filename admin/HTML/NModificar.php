@@ -3,7 +3,8 @@ session_start();
 if(@$_SESSION['Usuario'] == ""){
   header ("Location: ../");
 }else{
-?>
+
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,19 +17,31 @@ if(@$_SESSION['Usuario'] == ""){
     <link href="css/stylesheets.css" rel="stylesheet" type="text/css" />
 
     <script type='text/javascript' src='js/plugins/jquery/jquery.min.js'></script>
-    <script type='text/javascript' src='js/plugins/jquery/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='js/plugins/jquery/jquery-ui.min.js'></script>   
     <script type='text/javascript' src='js/plugins/jquery/jquery-migrate.min.js'></script>
-    <script type='text/javascript' src='js/plugins/jquery/globalize.js'></script>
+    <script type='text/javascript' src='js/plugins/jquery/globalize.js'></script>    
     <script type='text/javascript' src='js/plugins/bootstrap/bootstrap.min.js'></script>
+    
+    <script type='text/javascript' src='js/plugins/uniform/jquery.uniform.min.js'></script>
+    <script type='text/javascript' src='js/plugins/select2/select2.min.js'></script>
+    <script type='text/javascript' src='js/plugins/tagsinput/jquery.tagsinput.min.js'></script>
+    <script type='text/javascript' src='js/plugins/jquery/jquery-ui-timepicker-addon.js'></script>
+    <script type='text/javascript' src='js/plugins/ibutton/jquery.ibutton.js'></script>
     
     <script type='text/javascript' src='js/plugins/cleditor/jquery.cleditor.min.js'></script>
     <script type='text/javascript' src='js/plugins/uniform/jquery.uniform.min.js'></script>
     <script type='text/javascript' src='js/plugins/datatables/jquery.dataTables.min.js'></script>
 
-    <script type='text/javascript' src='js/plugins.js'></script>
-    <script type='text/javascript' src='js/actions.js'></script>
-    <script type='text/javascript' src='js/settings.js'></script>>
     <script type='text/javascript' src='js/plugins/tinymce/tinymce.min.js'></script>
+    <script type='text/javascript' src='js/plugins/validationengine/languages/jquery.validationEngine-en.js'></script>
+    <script type='text/javascript' src='js/plugins/validationengine/jquery.validationEngine.js'></script>
+    
+    <script type='text/javascript' src='js/plugins/maskedinput/jquery.maskedinput.min.js'></script>    
+    <script type='text/javascript' src='js/plugins/stepy/jquery.stepy.min.js'></script>    
+    
+    <script type='text/javascript' src='js/plugins.js'></script>    
+    <script type='text/javascript' src='js/actions.js'></script>
+    <script type='text/javascript' src='js/settings.js'></script>
 
 </head>
 <body class="bg-img-num1">
