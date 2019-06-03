@@ -31,7 +31,7 @@ echo '<script language="javascript">alert("Su correo ya esta registrado");</scri
       $resultado= $conexion->query($query);
       while ($row = $resultado->fetch_assoc()){
         $persona = $row['CodPersona'];
-        $query = "INSERT INTO Usuarios (Tipo,Usuario,Clave,CodPersona) VALUES (1,'$usuario',MD5('$clave'),'$persona')";
+        $query = "INSERT INTO Usuarios (Tipo,Usuario,Clave,CodPersona) VALUES (0,'$usuario',MD5('$clave'),'$persona')";
         $resultado= $conexion->query($query);
         if ($resultado) {
           echo'<script type="text/javascript">
